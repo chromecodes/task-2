@@ -1,4 +1,10 @@
+@import url(https://fonts.googleapis.com/css2?family=Nunito&family=Open+Sans&family=Quicksand&family=Saira:ital,wght@1,300;1,400&display=swap);
+
+@import "date.css";
+
 body {
+  font-family: "Nunito", sans-serif;
+
   padding: 0;
   border: 0;
   margin: 0;
