@@ -1,9 +1,11 @@
 import { datePick } from "./dom/date.js";
 import {btnMaker} from './dom/btn.js'
+import { checkMaker } from "./dom/check.js";
 
 
 let a1 = document.querySelector('#datePick')
 let a2 = document.querySelector('#btnMaker')
+let a3 = document.querySelector('#checkMaker')
 
 
 
@@ -25,4 +27,9 @@ a2.addEventListener('click',()=>{
     c.appendChild(a)
 
 
+})
+a3.addEventListener('click',()=>{
+    let a =checkMaker()
+    let c = document.querySelector('.mid')
+    c.appendChild(a)
 })
