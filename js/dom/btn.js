@@ -9,6 +9,13 @@ export const btnMaker = () => {
     topWrap.setAttribute("class", "topWrap");
 
       let label = document.createElement("button");
+      label.setAttribute("type", "button");
+      label.setAttribute("label", "Button");
+      label.setAttribute("name", "button-123");
+      label.setAttribute("class", "btn");
+      label.setAttribute("access", "false");
+
+      
       label.textContent = labelText;
 
       topWrap.appendChild(label);
@@ -21,15 +28,27 @@ export const btnMaker = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+          div.insertAdjacentElement("afterend", btnMaker());
+      })
 
       topWrap.appendChild(editDiv);
 
@@ -46,6 +65,12 @@ export const btnMaker = () => {
           editlabel.value = labelText
 
         s1.appendChild(editlabel);
+
+        editlabel.addEventListener('input',(e)=>{
+          label.textContent = e.target.value
+          label.setAttribute("label", `${e.target.value}`);
+        })
+
       editOption.appendChild(s1);
 
         let s2 = document.createElement("div");
@@ -77,21 +102,30 @@ export const btnMaker = () => {
 
         s2.appendChild(editType);
 
+        editType.addEventListener('change',(e)=>{
+          label.setAttribute('type',`${e.target.value}`)
+        })
+
       editOption.appendChild(s2);
 
-        let s3 = document.createElement("div");
-        s3.textContent = "Help Text";
-          let editText = document.createElement("input");
-          editText.setAttribute("type", "text");
-        s3.appendChild(editText);
-
-      editOption.appendChild(s3);
-
         let s4 = document.createElement("div");
-        s4.textContent = "Class";
+        s4.textContent = "Name";
+          let editName = document.createElement("input");
+          editName.setAttribute("type", "text");
+          editName.value = 'button-123'
+        s4.appendChild(editName);
+
+        editName.addEventListener('input', (e)=>{
+          label.setAttribute('name',`${e.target.value}`)
+        })
+
+      editOption.appendChild(s4);
+
+        let s3 = document.createElement("div");
+        s3.textContent = "Class";
           let editClass = document.createElement("input");
           editClass.setAttribute("type", "text");
-        s4.appendChild(editClass);
+        s3.appendChild(editClass);
 
       editOption.appendChild(s4);
 
@@ -101,7 +135,25 @@ export const btnMaker = () => {
           editvalue.setAttribute("type", "text");
         s5.appendChild(editvalue);
 
+        editvalue.addEventListener('input', (e)=>{
+          label.setAttribute('value',`${e.target.value}`)
+        })
+
       editOption.appendChild(s5);
+
+      let s6 = document.createElement("div");
+        s6.textContent = "Access";
+          let editAccess = document.createElement("input");
+          editAccess.setAttribute("type", "checkbox");
+
+          editAccess.addEventListener('click',()=>{
+            console.log(editAccess.checked)
+            label.setAttribute('access',`${editAccess.checked}`)
+
+          })
+
+        s6.appendChild(editAccess);
+      editOption.appendChild(s6);
 
     div.appendChild(editOption);
 

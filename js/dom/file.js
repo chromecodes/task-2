@@ -8,18 +8,30 @@ export const fileUp = () => {
     
         let topWrap = document.createElement("div");
         topWrap.setAttribute("class", "topWrap");
-    
-            let label = document.createElement("label");
-            label.setAttribute("for", "file");
-            label.textContent = labelText;
+
+            let inWrap = document.createElement("div");
+            inWrap.setAttribute("class", "inWrap");
+        
+                let label = document.createElement("label");
+                label.setAttribute("for", "file");
+                label.textContent = labelText;
+
+            inWrap.appendChild(label);
+
     
                 let input = document.createElement("input");
                 input.setAttribute("id", "file");
                 input.setAttribute("type", "file");
+                input.setAttribute("required", "false");
+                input.setAttribute("label", "File Upload");
+                input.setAttribute("class", "file");
+                input.setAttribute("name", "file-123");
+                input.setAttribute("access", "false");
+                input.setAttribute("multiple", "false");
+
+            inWrap.appendChild(input);
     
-            label.appendChild(input);
-    
-        topWrap.appendChild(label);
+        topWrap.appendChild(inWrap);
         
             let editDiv = document.createElement("div");
             editDiv.setAttribute("class", "editDiv");
@@ -28,16 +40,28 @@ export const fileUp = () => {
                 closeBtn.setAttribute("class", "closeBtn");
                 closeBtn.setAttribute("data-type", "closeBtn");
             editDiv.appendChild(closeBtn);
+
+            closeBtn.addEventListener('click', ()=>{
+                div.remove()
+            })
         
                 let editBtn = document.createElement("button");
                 editBtn.setAttribute("class", "editBtn");
                 editBtn.setAttribute("data-type", "editBtn");
             editDiv.appendChild(editBtn);
+
+            editBtn.addEventListener('click', ()=> {
+                editOption.classList.toggle('block')
+      })
         
                 let copyBtn = document.createElement("button");
                 copyBtn.setAttribute("class", "copyBtn");
                 copyBtn.setAttribute("data-type", "copyBtn");
             editDiv.appendChild(copyBtn);
+
+            copyBtn.addEventListener('click',() => {
+                div.insertAdjacentElement("afterend", fileUp());
+            })
     
         topWrap.appendChild(editDiv);
     
@@ -51,6 +75,11 @@ export const fileUp = () => {
             s1.textContent = "Required";
               let editReq = document.createElement("input");
               editReq.setAttribute("type", "checkbox");
+
+              editReq.addEventListener('click',()=>{
+            input.setAttribute('required',`${editReq.checked}`)
+      
+            })
     
             s1.appendChild(editReq);
         editOption.appendChild(s1);
@@ -60,6 +89,12 @@ export const fileUp = () => {
               let editlabel = document.createElement("input");
               editlabel.setAttribute("type", "text");
               editlabel.value = labelText
+
+              editlabel.addEventListener('input',(e)=>{
+                label.textContent = e.target.value
+                input.setAttribute("label", `${e.target.value}`);
+              })
+
             s2.appendChild(editlabel);
     
         editOption.appendChild(s2);
@@ -68,6 +103,10 @@ export const fileUp = () => {
             s3.textContent = "Help Text";
               let editText = document.createElement("input");
               editText.setAttribute("type", "text");
+
+              editText.addEventListener('input',(e)=>{
+                label.setAttribute("tooltip", `${e.target.value}`);
+              })
             s3.appendChild(editText);
     
         editOption.appendChild(s3);
@@ -76,6 +115,11 @@ export const fileUp = () => {
             s4.textContent = "Class";
               let editClass = document.createElement("input");
               editClass.setAttribute("type", "text");
+
+              editClass.addEventListener('input', (e)=>{
+                input.setAttribute('class',`${e.target.value}`)
+              })
+
             s4.appendChild(editClass);
     
         editOption.appendChild(s4);
@@ -108,6 +152,11 @@ export const fileUp = () => {
             s6.textContent = "Required";
                 let multiFile = document.createElement("input");
                 multiFile.setAttribute("type", "checkbox");
+
+                multiFile.addEventListener('click',()=>{
+                    input.setAttribute('multiple',`${editReq.checked}`)
+          
+                })
 
             s6.appendChild(multiFile);
         editOption.appendChild(s6);

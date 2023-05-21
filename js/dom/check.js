@@ -11,19 +11,20 @@ export const checkMaker = () => {
     topWrap.setAttribute("class", "topWrap");
 
       let label = document.createElement("label");
-      label.setAttribute("for", "checkbox");
+      label.setAttribute("for", "checkboxCnt");
       label.textContent = labelText;
 
-        let input = document.createElement("input");
-        input.setAttribute("id", "checkbox");
-        input.setAttribute("type", "checkbox");
-        input.setAttribute("value", "option 1");
-
-        let span = document.createElement("span");
-        span.setAttribute("type", "checkbox");
+        let span = document.createElement("label");
+        span.setAttribute("for", "checkbox");
         span.textContent = 'option 1'
 
-      label.appendChild(input);
+          let input = document.createElement("input");
+          input.setAttribute("id", "checkbox");
+          input.setAttribute("type", "checkbox");
+          input.setAttribute("value", "option 1");
+
+        span.appendChild(input);
+        
       label.appendChild(span);
 
 
@@ -37,15 +38,28 @@ export const checkMaker = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+        div.insertAdjacentElement("afterend", checkMaker());
+    })
 
       topWrap.appendChild(editDiv);
 

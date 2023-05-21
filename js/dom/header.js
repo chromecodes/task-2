@@ -10,6 +10,9 @@ export const headerMaker = () => {
 
       let label = document.createElement("h1");
       label.textContent = labelText;
+      label.setAttribute("type", "h1");
+      label.setAttribute("label", "Header");
+      label.setAttribute("access", "false");
 
       topWrap.appendChild(label);
 
@@ -21,15 +24,27 @@ export const headerMaker = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+        div.insertAdjacentElement("afterend", headerMaker());
+    })
 
       topWrap.appendChild(editDiv);
 
@@ -44,6 +59,11 @@ export const headerMaker = () => {
           let editlabel = document.createElement("input");
           editlabel.setAttribute("type", "text");
           editlabel.value = labelText
+
+          editlabel.addEventListener('input',(e)=>{
+            label.textContent = e.target.value
+            label.setAttribute("label", `${e.target.value}`);
+          })
 
         s1.appendChild(editlabel);
       editOption.appendChild(s1);
@@ -93,6 +113,9 @@ export const headerMaker = () => {
             editTypeOption6.setAttribute("value", "h6");
             editTypeOption6.textContent = "h6";
             
+        editType.addEventListener('change',(e)=>{
+          label.setAttribute('type',`${e.target.value}`)
+        })
 
             editType.appendChild(editTypeOption6);
 
@@ -100,14 +123,19 @@ export const headerMaker = () => {
 
       editOption.appendChild(s2);
 
-        let s3 = document.createElement("div");
-        s3.textContent = "Class";
-          let editClass = document.createElement("input");
-          editClass.setAttribute("type", "text");
-        s3.appendChild(editClass);
+        let s6 = document.createElement("div");
+        s6.textContent = "Access";
+          let editAccess = document.createElement("input");
+          editAccess.setAttribute("type", "checkbox");
 
-      editOption.appendChild(s3);
+          editAccess.addEventListener('click',()=>{
+            console.log(editAccess.checked)
+            label.setAttribute('access',`${editAccess.checked}`)
 
+          })
+
+        s6.appendChild(editAccess);
+      editOption.appendChild(s6);
 
     div.appendChild(editOption);
 

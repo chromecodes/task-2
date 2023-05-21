@@ -10,9 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="js/main.js" type="module" defer></script>
     <style>
-        #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-        #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-        #sortable li span { position: absolute; margin-left: -1.3em; }
+        
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -27,49 +25,37 @@
     <div class="root">
         <header class="header"> Drag & Drop Builder</header>
         <div class="main">
-            <div class="left">
-                <form>
-                    <input list="browsers">
-                    <datalist id="browsers">
-                        <option value="Internet Explorer">
-                        <option value="Firefox">
-                        <option value="Chrome">
-                        <option value="Opera">
-                        <option value="Safari">
-                    </datalist>
-                </form>
-                
-
-                <input list="ide">
-                
-                <datalist id="ide">
-                <option value="Visual Studio Code" >
-                <option value="Atom" >
-                <option value="Sublime Text" >
-                </datalist>
-
-
-            </div>
-            <div  class="mid">
-                <input type="checkbox" name="option" id="1" value="option">
+            <div id="sortable" class="mid">
+             
             </div>
             <div class="right">
                 <div class="controls">
                     <ul >
-                    <li id="" class="draggable" draggable="true">Autocomplete</li>
+                    <li id="autoMaker" class="draggable" draggable="true">Autocomplete</li>
                     <li id="btnMaker" class="draggable" draggable="true">Button</li>
                     <li id="checkMaker" class="draggable" draggable="true">Checkbox Group</li>
                     <li id="datePick" class="draggable " draggable="true">Date Field</li>
-                    <li id="" class="draggable" draggable="true">File Upload</li>
-                    <li id="" class="draggable" draggable="true">Header</li>
-                    <li id="" class="draggable" draggable="true">Hidden Input</li>
-                    <li id="" class="draggable" draggable="true">Number</li>
-                    <li id="" class="draggable" draggable="true">Paragraph</li>
-                    <li id="" class="draggable" draggable="true">Radio Group</li>
-                    <li id="" class="draggable" draggable="true">Select</li>
-                    <li id="" class="draggable" draggable="true">Text Feild</li>
-                    <li id="" class="draggable" draggable="true">Text Area</li>
+                    <li id="fileUp" class="draggable" draggable="true">File Upload</li>
+                    <li id="headerMaker" class="draggable" draggable="true">Header</li>
+                    <li id="hiddenMaker" class="draggable" draggable="true">Hidden Input</li>
+                    <li id="numMaker" class="draggable" draggable="true">Number</li>
+                    <li id="paraMaker" class="draggable" draggable="true">Paragraph</li>
+                    <li id="radioMaker" class="draggable" draggable="true">Radio Group</li>
+                    <li id="selectMaker" class="draggable" draggable="true">Select</li>
+                    <li id="textMaker" class="draggable" draggable="true">Text Feild</li>
+                    <li id="areaMaker" class="draggable" draggable="true">Text Area</li>
                 </ul>
+             </div>
+             <div class="keys">
+                <button class="clear">
+                    Clear
+                </button>
+                <button class="json">
+                    Json
+                </button>
+                <button class="save">
+                    Save
+                </button>
              </div>
             </div>
         </div>

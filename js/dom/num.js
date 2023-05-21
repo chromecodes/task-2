@@ -28,15 +28,27 @@ export const numMaker = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+        div.insertAdjacentElement("afterend", numMaker());
+    })
 
       topWrap.appendChild(editDiv);
 

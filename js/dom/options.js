@@ -27,6 +27,8 @@ export const optionMaker = () => {
         c4.setAttribute("type", "button");
         c4.textContent = 'X'
 
+        c4.addEventListener('click',()=>li.remove())
+
     li.appendChild(c4);
 
     return li

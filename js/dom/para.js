@@ -22,15 +22,27 @@ export const paraMaker = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+        div.insertAdjacentElement("afterend", paraMaker());
+    })
 
       topWrap.appendChild(editDiv);
 
@@ -42,7 +54,7 @@ export const paraMaker = () => {
 
         let s1 = document.createElement("div");
         s1.textContent = "Content";
-            let editlabel = document.createElement("div");
+            let editlabel = document.createElement("textarea");
             editlabel.setAttribute("type", "text");
             editlabel.value = labelText
         s1.appendChild(editlabel);

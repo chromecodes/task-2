@@ -2,15 +2,22 @@
 
 @import "date.css";
 
+
 body {
   font-family: "Nunito", sans-serif;
-
   padding: 0;
   border: 0;
   margin: 0;
 }
+h1{
+  margin: 0;
+}
 li {
   list-style: none;
+}
+ul{
+  margin: 0;
+  padding: 0;
 }
 .root {
   display: flex;
@@ -29,24 +36,53 @@ li {
   flex-grow: 1;
   background-color: black;
   padding: 15px 20px;
-  display: grid;
-  grid-template-columns: 0.75fr 1fr 0.75fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 .left {
   background-color: rgba(250, 235, 215, 0.16);
 }
 .mid {
-  background-color: rgb(52, 51, 51);
+  min-height: 67vh;
+  width: 50vw;
+  background-color: rgba(255, 255, 255, 0.172);
+  border: 2px dashed rgba(255, 255, 255, 0.493);
 }
-.right {
-  background-color: rgba(250, 235, 215, 0.16);
+
+.mid > div:first-child{
+  border-radius: 10px 10px 0 0;
+}
+.mid > div:last-child{
+  border-radius:0 0 10px 10px ;
+}
+.controls > ul {
+ display: flex;
+ flex-direction: column;
+}
+.controls > ul > li{
+  width: 10rem;
+  margin: 0;
+  border: 1px solid #c5c5c5;
+  border-bottom: 0;
+  cursor: move;
+
+
 }
 .controls > li:first-child {
   border-radius: 5px 5px 0px 0px;
 }
 .controls > li:last-child {
   border-radius: 0 0 5px 5px;
+}
+.keys {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.keys > button {
+  padding: 6px 12px;
 }
 li.draggable {
   padding: 10px;

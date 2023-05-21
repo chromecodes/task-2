@@ -10,14 +10,24 @@ export const autoMaker = () => {
     let topWrap = document.createElement("div");
     topWrap.setAttribute("class", "topWrap");
 
+    let inWrap = document.createElement("div");
+    inWrap.setAttribute("class", "inWrap");
+
       let label = document.createElement("label");
-      label.setAttribute("for", "autocomplete");
+      label.setAttribute("for", "autoInput");
       label.textContent = labelText;
+
+      inWrap.appendChild(label);
 
 
       const input = document.createElement("input");
-      input.setAttribute("id", "autoInput");
       input.setAttribute("list", "auto");
+      input.setAttribute("type", "text");
+      input.setAttribute("required", "false");
+      input.setAttribute("label", "Autocomplete");
+      input.setAttribute("class", "auto");
+      input.setAttribute("name", "auto-123");
+      input.setAttribute("access", "false");
 
         const autoInput = document.createElement("datalist");
         autoInput.setAttribute("id", "auto");
@@ -40,9 +50,11 @@ export const autoMaker = () => {
 
         input.appendChild(autoInput);
 
-      label.appendChild(input);
+        inWrap.appendChild(input);
 
-      topWrap.appendChild(label);
+      topWrap.appendChild(inWrap);
+
+
 
       let editDiv = document.createElement("div");
       editDiv.setAttribute("class", "editDiv");
@@ -52,15 +64,27 @@ export const autoMaker = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+        div.insertAdjacentElement("afterend", autoMaker());
+    })
 
       topWrap.appendChild(editDiv);
 
@@ -75,6 +99,11 @@ export const autoMaker = () => {
           let editReq = document.createElement("input");
           editReq.setAttribute("type", "checkbox");
 
+          editReq.addEventListener('click',()=>{
+              input.setAttribute('required',`${editReq.checked}`)
+    
+          })
+
         s1.appendChild(editReq);
       editOption.appendChild(s1);
 
@@ -83,6 +112,11 @@ export const autoMaker = () => {
           let editlabel = document.createElement("input");
           editlabel.setAttribute("type", "text");
           editlabel.value = labelText
+
+          editlabel.addEventListener('input',(e)=>{
+            label.textContent = e.target.value
+            input.setAttribute("label", `${e.target.value}`);
+          })
         s2.appendChild(editlabel);
 
       editOption.appendChild(s2);
@@ -91,6 +125,10 @@ export const autoMaker = () => {
         s3.textContent = "Help Text";
           let editText = document.createElement("input");
           editText.setAttribute("type", "text");
+
+          editText.addEventListener('input',(e)=>{
+            label.setAttribute("tooltip", `${e.target.value}`);
+          })
         s3.appendChild(editText);
 
       editOption.appendChild(s3);
@@ -99,6 +137,11 @@ export const autoMaker = () => {
             s4.textContent = "Placeholder";
                 let editPlace = document.createElement("input");
                 editPlace.setAttribute("type", "text");
+
+                editPlace.addEventListener('input',(e)=>{
+                  input.setAttribute("placeholder", `${e.target.value}`);
+                })
+
             s4.appendChild(editPlace);
 
         editOption.appendChild(s4);
@@ -107,6 +150,11 @@ export const autoMaker = () => {
         s5.textContent = "Class";
           let editClass = document.createElement("input");
           editClass.setAttribute("type", "text");
+          editClass.value = "auto"
+
+          editClass.addEventListener('input', (e)=>{
+            input.setAttribute('class',`${e.target.value}`)
+          })
         s5.appendChild(editClass);
 
       editOption.appendChild(s5);
@@ -115,6 +163,10 @@ export const autoMaker = () => {
       s6.textContent = "Name";
         let editName = document.createElement("input");
         editName.setAttribute("type", "text");
+
+        editName.addEventListener('input', (e)=>{
+          input.setAttribute('name',`${e.target.value}`)
+        })
       s6.appendChild(editName);
 
     editOption.appendChild(s6);
@@ -124,43 +176,44 @@ export const autoMaker = () => {
         let editChoice = document.createElement("div");
         editChoice.setAttribute("class", "optionWrap");
 
-        for(let i=0;i<4;i++){
-                let list = document.createElement("ol");
-                list.setAttribute("class", "optionList");    
-                
-                    let li = document.createElement("li");
-                    li.setAttribute("class", "optionCnt");
-                
-                        let c1 = document.createElement("input");
-                        c1.setAttribute("id", "checkbox");
-                        c1.setAttribute("type", "checkbox");
-                
-                    li.appendChild(c1);
-                
-                        let c2 = document.createElement("input");
-                        c2.setAttribute("type", "text");
-                        c2.value = `Option ${i}` 
-                
-                    li.appendChild(c2);
-                
-                        let c3 = document.createElement("input");
-                        c3.setAttribute("type", "text");
-                        c3.value = `option-${i}` 
-                
-                
-                    li.appendChild(c3);
-                        
-                        let c4 = document.createElement("button");
-                        c4.setAttribute("type", "button");
-                        c4.textContent = 'X'
-                
-                    li.appendChild(c4);
-                
-                list.appendChild(li)
-                
-            
+          let list = document.createElement("ol");
+          list.setAttribute("class", "optionList");    
+
+            for(let i=1;i<4;i++){
+  
+              let li = document.createElement("li");
+                  li.setAttribute("class", "optionCnt");
+              
+                    let c1 = document.createElement("input");
+                    c1.setAttribute("id", "checkbox");
+                    c1.setAttribute("type", "checkbox");
+              
+                  li.appendChild(c1);
+              
+                    let c2 = document.createElement("input");
+                    c2.setAttribute("type", "text");
+                    c2.value = `Option ${i}` 
+              
+                  li.appendChild(c2);
+              
+                    let c3 = document.createElement("input");
+                    c3.setAttribute("type", "text");
+                    c3.value = `option-${i}` 
+                      
+                  li.appendChild(c3);
+                      
+                    let c4 = document.createElement("button");
+                    c4.setAttribute("type", "button");
+                    c4.textContent = 'X'
+
+                    c4.addEventListener('click',()=>li.remove())
+              
+                  li.appendChild(c4);
+              
+              list.appendChild(li)
+            }
             editChoice.appendChild(list);
-        }
+        
 
             let addOption = document.createElement("button");
             addOption.setAttribute("class", "addOption");
@@ -178,6 +231,18 @@ export const autoMaker = () => {
 
   editOption.appendChild(s8);
 
+  let s9 = document.createElement("div");
+        s9.textContent = "Access";
+          let editAccess = document.createElement("input");
+          editAccess.setAttribute("type", "checkbox");
+
+          editAccess.addEventListener('click',()=>{
+            console.log(editAccess.checked)
+            label.setAttribute('access',`${editAccess.checked}`)
+
+          })
+        s9.appendChild(editAccess);
+      editOption.appendChild(s9);
 
     div.appendChild(editOption);
 

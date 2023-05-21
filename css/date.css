@@ -1,16 +1,36 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
 
+
+.topWrap > .inWrap > input[type='text'],
+.topWrap > .inWrap > input[type='number']{
+    width: 100%;
+}
+
+ol > li > input[type='text'] {
+    width: 25%;
+}
 .datePicker,
-.btnPicker{
-    background-color: antiquewhite;
+.btnPicker,
+.autocomplete,
+.checkMaker,
+.fileUp,.headerMaker,.hiddenLabel,.numMaker,.paraMaker,.radioMaker,
+.selectMaker,.textMaker,.areaMaker{
+    background-color: #fff;
+    color: #746666;
     padding: 10px;
+    margin-bottom: 1px;
 }
 
 .topWrap {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
 }
+.inWrap{
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
 .editDiv {
    margin: -10px;
 }
@@ -48,16 +68,33 @@
     font-size: 18px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 8px;
 }
 
 .editMenu{
     display: none;
-}
-.editMenu > div{
-    margin-bottom: 15px;
+    margin-top: 15px;
+    background-color: rgb(242, 236, 236);
+    color: #000;
+   border: 1px solid #746666;
+   border-radius: 20px;
+   padding: 10px;
 }
 
-.editMenu > div > input{
-    margin-left: 25px;
+
+.editMenu > div  {
+   margin-bottom: 10px;
+   padding: 0 100px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 2rem;
+}
+.optionCnt{
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+}
+.block{
+    display: block;
 }

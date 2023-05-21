@@ -8,18 +8,29 @@ export const datePick = () => {
     let topWrap = document.createElement("div");
     topWrap.setAttribute("class", "topWrap");
 
-      let label = document.createElement("label");
-      label.setAttribute("for", "date");
-      label.textContent = labelText;
+      let inWrap = document.createElement("div");
+      inWrap.setAttribute("class", "inWrap");
 
-        let input = document.createElement("input");
-        input.setAttribute("id", "date");
-        input.setAttribute("type", "date");
-        input.setAttribute("type", "date");
+        let label = document.createElement("label");
+        label.setAttribute("for", "date");
+        label.textContent = labelText;
 
-      label.appendChild(input);
+      inWrap.appendChild(label);
 
-      topWrap.appendChild(label);
+          let input = document.createElement("input");
+          input.setAttribute("type", "date");
+          input.setAttribute("required", "false");
+          input.setAttribute("label", "Date Field");
+          input.setAttribute("class", "date");
+          input.setAttribute("name", "date-123");
+
+          input.addEventListener('input', (e)=>{
+            input.setAttribute('value',`${e.target.value}`)
+          })
+
+      inWrap.appendChild(input);
+
+      topWrap.appendChild(inWrap);
 
       let editDiv = document.createElement("div");
       editDiv.setAttribute("class", "editDiv");
@@ -29,15 +40,28 @@ export const datePick = () => {
         closeBtn.setAttribute("data-type", "closeBtn");
       editDiv.appendChild(closeBtn);
 
+      closeBtn.addEventListener('click', ()=>{
+        div.remove()
+      })
+
         let editBtn = document.createElement("button");
         editBtn.setAttribute("class", "editBtn");
         editBtn.setAttribute("data-type", "editBtn");
       editDiv.appendChild(editBtn);
 
+
+      editBtn.addEventListener('click', ()=> {
+        editOption.classList.toggle('block')
+      })
+
         let copyBtn = document.createElement("button");
         copyBtn.setAttribute("class", "copyBtn");
         copyBtn.setAttribute("data-type", "copyBtn");
       editDiv.appendChild(copyBtn);
+
+      copyBtn.addEventListener('click',() => {
+        div.insertAdjacentElement("afterend", datePick());
+    })
 
       topWrap.appendChild(editDiv);
 
@@ -52,6 +76,11 @@ export const datePick = () => {
           let editReq = document.createElement("input");
           editReq.setAttribute("type", "checkbox");
 
+          editReq.addEventListener('click',()=>{
+            input.setAttribute('required',`${editReq.checked}`)
+  
+        })
+
         s1.appendChild(editReq);
       editOption.appendChild(s1);
 
@@ -60,6 +89,12 @@ export const datePick = () => {
           let editlabel = document.createElement("input");
           editlabel.setAttribute("type", "text");
           editlabel.value = labelText
+
+          editlabel.addEventListener('input',(e)=>{
+            label.textContent = e.target.value
+            input.setAttribute("label", `${e.target.value}`);
+          })
+
         s2.appendChild(editlabel);
 
       editOption.appendChild(s2);
@@ -68,6 +103,11 @@ export const datePick = () => {
         s3.textContent = "Help Text";
           let editText = document.createElement("input");
           editText.setAttribute("type", "text");
+
+          editText.addEventListener('input',(e)=>{
+            label.setAttribute("tooltip", `${e.target.value}`);
+          })
+
         s3.appendChild(editText);
 
       editOption.appendChild(s3);
@@ -76,6 +116,10 @@ export const datePick = () => {
         s4.textContent = "Class";
           let editClass = document.createElement("input");
           editClass.setAttribute("type", "text");
+
+          editClass.addEventListener('input', (e)=>{
+            input.setAttribute('class',`${e.target.value}`)
+          })
         s4.appendChild(editClass);
 
       editOption.appendChild(s4);
@@ -84,9 +128,25 @@ export const datePick = () => {
         s5.textContent = "Value";
           let editvalue = document.createElement("input");
           editvalue.setAttribute("type", "text");
+
+          editvalue.addEventListener('input', (e)=>{
+            input.setAttribute('value',`${e.target.value}`)
+          })
         s5.appendChild(editvalue);
 
       editOption.appendChild(s5);
+
+      let s6 = document.createElement("div");
+      s6.textContent = "Name";
+        let editName = document.createElement("input");
+        editName.setAttribute("type", "text");
+
+        editName.addEventListener('input', (e)=>{
+          input.setAttribute('name',`${e.target.value}`)
+        })
+      s6.appendChild(editName);
+
+    editOption.appendChild(s6);
 
     div.appendChild(editOption);
 
