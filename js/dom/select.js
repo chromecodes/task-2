@@ -1,7 +1,39 @@
-import { optionMaker } from "./options.js";
+import { optionMaker } from "./Seloptions.js";
+
+let i=1
+
+
+const makeSelbox = (k,a)=>{
+
+  for(;i<=k;i++){
+
+    const input = document.createElement("option");
+    input.setAttribute("value", `option-${i}`);
+    input.setAttribute( 'id',`id-${i}`);
+    input.textContent = `option ${i}`;
+
+
+    input.addEventListener('click', ()=>{
+      let list = document.querySelector(`.optionList`)
+      console.log(list);
+
+      let sad = list.querySelector(`#ids-${i-1}`)
+      console.log(sad);
+
+      if(input.checked) sad.checked=true
+      else sad.checked=false
+    })
+
+    a.appendChild(input);
+
+  }
+
+}
 
 export const selectMaker = () => {
+  i=1
     let labelText = "Select";
+    let k=1
 
     let div = document.createElement("div");
     div.setAttribute("class", "selectMaker");
@@ -21,23 +53,7 @@ export const selectMaker = () => {
         const editInput = document.createElement("select");
         editInput.setAttribute("id", "editInput");
 
-            const editInputOption1 = document.createElement("option");
-            editInputOption1.setAttribute("value", "option 1");
-            editInputOption1.textContent = "option 1";
-            
-        editInput.appendChild(editInputOption1);
-
-            const editInputOption2 = document.createElement("option");
-            editInputOption2.setAttribute("value", "option 2");
-            editInputOption2.textContent = "option 2";
-            
-        editInput.appendChild(editInputOption2);
-
-            const editInputOption3 = document.createElement("option");
-            editInputOption3.setAttribute("value", "option 3");
-            editInputOption3.textContent = "option 3";
-            
-        editInput.appendChild(editInputOption3);
+        makeSelbox(k,editInput)
 
       label.appendChild(editInput);
 
@@ -173,43 +189,13 @@ export const selectMaker = () => {
         let editChoice = document.createElement("div");
         editChoice.setAttribute("class", "optionWrap");
 
-        for(let i=0;i<4;i++){
                 let list = document.createElement("ol");
                 list.setAttribute("class", "optionList");    
+
+                let a = optionMaker(k,editInput)
+                list.appendChild(a)
                 
-                    let li = document.createElement("li");
-                    li.setAttribute("class", "optionCnt");
-                
-                        let c1 = document.createElement("input");
-                        c1.setAttribute("id", "checkbox");
-                        c1.setAttribute("type", "checkbox");
-                
-                    li.appendChild(c1);
-                
-                        let c2 = document.createElement("input");
-                        c2.setAttribute("type", "text");
-                        c2.value = `Option ${i}` 
-                
-                    li.appendChild(c2);
-                
-                        let c3 = document.createElement("input");
-                        c3.setAttribute("type", "text");
-                        c3.value = `option-${i}` 
-                
-                
-                    li.appendChild(c3);
-                        
-                        let c4 = document.createElement("button");
-                        c4.setAttribute("type", "button");
-                        c4.textContent = 'X'
-                
-                    li.appendChild(c4);
-                
-                list.appendChild(li)
-                
-            
             editChoice.appendChild(list);
-        }
 
             let addOption = document.createElement("button");
             addOption.setAttribute("class", "addOption");
@@ -217,7 +203,9 @@ export const selectMaker = () => {
 
 
             addOption.addEventListener('click',()=>{
-                let a = optionMaker()
+                k++
+                makeSelbox(k,editInput)
+                let a = optionMaker(k,editInput)
                 list.appendChild(a)
             })
 

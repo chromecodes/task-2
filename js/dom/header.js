@@ -1,5 +1,6 @@
 export const headerMaker = () => {
     let labelText = "Header";
+    let type = 'h1'
 
     let div = document.createElement("div");
     div.setAttribute("class", "headerMaker");
@@ -8,7 +9,7 @@ export const headerMaker = () => {
     let topWrap = document.createElement("div");
     topWrap.setAttribute("class", "topWrap");
 
-      let label = document.createElement("h1");
+      let label = document.createElement(`${type}`);
       label.textContent = labelText;
       label.setAttribute("type", "h1");
       label.setAttribute("label", "Header");
@@ -115,6 +116,15 @@ export const headerMaker = () => {
             
         editType.addEventListener('change',(e)=>{
           label.setAttribute('type',`${e.target.value}`)
+          type=e.target.value
+          let label = document.querySelector('[label="header"]')
+          let label2 = document.createElement(`${type}`);
+          label2.textContent = label.textContent;
+          label2.setAttribute("type",`${type}` );
+          label2.setAttribute("label", "Header");
+          label2.setAttribute("access", "false");
+          label.replaceWith(label2)
+    
       
         })
 

@@ -7,7 +7,7 @@ import { headerMaker } from "./dom/header.js";
 import { hiddenMaker } from "./dom/hidden.js";
 import { numMaker } from "./dom/num.js";
 import { paraMaker } from "./dom/para.js";
-import { optionMaker } from "./dom/options.js";
+import { optionMaker } from "./dom/Chkoptions.js";
 import { radioMaker } from "./dom/radio.js";
 import { selectMaker } from "./dom/select.js";
 import { textMaker } from "./dom/text.js";
@@ -47,12 +47,23 @@ json.addEventListener('click',()=>{
     console.log(arr1);
     let Json = [] 
     arr1.forEach((arr)=>{
-        console.log(arr.attributes);
+        let t1 = arr.children
+        let val = []
+        for(let i=0 ;i<t1.length;i++) {
+            let t = t1[0][i]
+           let ab = {
+            'label': t.label,
+            'value': t.value,
+            'selected': t.selected,
+           }
+           val.push(ab)
+        }
         let t2 = arr.attributes
         let obj = {}
         for(let i=0 ;i<t2.length;i++) {
             obj[t2[i].name] = t2[i].value
         }
+        obj['value'] = val
         Json.push(obj)
     })
     console.log(Json);

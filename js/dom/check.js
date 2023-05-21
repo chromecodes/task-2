@@ -1,6 +1,44 @@
-import { optionMaker } from "./options.js";
+import { optionMaker } from "./Chkoptions.js";
+
+let i=1
+
+const makeCheckbox = (k,a)=>{
+
+  for(;i<=k;i++){
+    let span = document.createElement("label");
+    span.setAttribute("for", "checkbox");
+    span.textContent = `option ${i}`
+    span.setAttribute( 'id',`id-${i}`);
+
+
+    let input = document.createElement("input");
+    input.setAttribute( 'class',`id-${i}`);
+    input.setAttribute("id", "checkbox");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("value", `option ${i}`);
+
+    input.addEventListener('click', ()=>{
+      let list = document.querySelector(`.optionList`)
+      console.log(list);
+
+      let sad = list.querySelector(`#ids-${i-1}`)
+      console.log(sad);
+
+      if(input.checked) sad.checked=true
+      else sad.checked=false
+    })
+
+    a.appendChild(input);
+
+    a.appendChild(span)
+  }
+
+}
 
 export const checkMaker = () => {
+  let k=1
+
+    if(i>k){i=1}
     let labelText = "Checkbox Group";
 
     let div = document.createElement("div");
@@ -20,6 +58,8 @@ export const checkMaker = () => {
       label.setAttribute("class", "checkbox");
       label.setAttribute("access", "false");
       label.setAttribute("others", "false");
+      label.setAttribute("inline", "true");
+
 
       
       label.textContent = labelText;
@@ -27,18 +67,12 @@ export const checkMaker = () => {
     inWrap.appendChild(label);
 
 
-        let span = document.createElement("label");
-        span.setAttribute("for", "checkbox");
-        span.textContent = 'option 1'
+        let checkboxCnt = document.createElement("div");
+        checkboxCnt.setAttribute("class", "checkboxCnt");
 
-          let input = document.createElement("input");
-          input.setAttribute("id", "checkbox");
-          input.setAttribute("type", "checkbox");
-          input.setAttribute("value", "option 1");
-
-        span.appendChild(input);
+        makeCheckbox(k,checkboxCnt)
         
-    inWrap.appendChild(span);
+    inWrap.appendChild(checkboxCnt);
 
       topWrap.appendChild(inWrap);
 
@@ -137,9 +171,11 @@ export const checkMaker = () => {
         s5.textContent = "Inline";
           let editvalue = document.createElement("input");
           editvalue.setAttribute("type", "checkbox");
+          editvalue.checked=true
 
           editvalue.addEventListener('click',()=>{
             label.setAttribute('inline',`${editvalue.checked}`)
+
           })
           
         s5.appendChild(editvalue);
@@ -178,37 +214,10 @@ export const checkMaker = () => {
         editChoice.setAttribute("class", "optionWrap");
 
             let list = document.createElement("ol");
-            list.setAttribute("class", "optionList");    
-            
-                let li = document.createElement("li");
-                li.setAttribute("class", "optionCnt");
-            
-                    let c1 = document.createElement("input");
-                    c1.setAttribute("id", "checkbox");
-                    c1.setAttribute("type", "checkbox");
-            
-                li.appendChild(c1);
-            
-                    let c2 = document.createElement("input");
-                    c2.setAttribute("type", "text");
-                    c2.value = 'option 1'
-            
-                li.appendChild(c2);
-            
-                    let c3 = document.createElement("input");
-                    c3.setAttribute("type", "text");
-                    c3.value = 'option-1'
-            
-                li.appendChild(c3);
-                    
-                    let c4 = document.createElement("button");
-                    c4.setAttribute("type", "button");
-                    c4.textContent = 'X'
-            
-                li.appendChild(c4);
-            
-            list.appendChild(li)
-            
+            list.setAttribute("class", "optionList");   
+
+            let a = optionMaker(k,checkboxCnt)
+                list.appendChild(a)
         
         editChoice.appendChild(list);
 
@@ -218,7 +227,10 @@ export const checkMaker = () => {
 
 
             addOption.addEventListener('click',()=>{
-                let a = optionMaker()
+                k++
+                makeCheckbox(k,checkboxCnt)
+
+                let a = optionMaker(k,checkboxCnt)
                 list.appendChild(a)
             })
 

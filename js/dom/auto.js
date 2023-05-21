@@ -1,7 +1,36 @@
-import { optionMaker } from "./options.js";
+import { optionMaker } from "./Chkoptions.js";
+
+let i = 1;
+
+const makeOPtion = (k,a)=>{
+
+  for(;i<=k;i++){
+
+    const input = document.createElement("option");
+    input.setAttribute("value", `option-${i}`);
+    input.setAttribute( 'id',`id-${i}`);
+    input.textContent = `option ${i}`;
+
+    input.addEventListener('click', ()=>{
+      let list = document.querySelector(`.optionList`)
+      console.log(list);
+
+      let sad = list.querySelector(`#ids-${i-1}`)
+      console.log(sad);
+
+      if(input.checked) sad.checked=true
+      else sad.checked=false
+    })
+
+    a.appendChild(input);
+
+  }
+
+}
 
 export const autoMaker = () => {
     let labelText = "Autocomplete";
+    let k = 3
 
     let div = document.createElement("div");
     div.setAttribute("class", "autocomplete");
@@ -33,20 +62,7 @@ export const autoMaker = () => {
         autoInput.setAttribute("id", "auto");
         autoInput.setAttribute("list", "auto");
 
-            const autoInputOption1 = document.createElement("option");
-            autoInputOption1.setAttribute("value", "option 1");
-            
-        autoInput.appendChild(autoInputOption1);
-
-            const autoInputOption2 = document.createElement("option");
-            autoInputOption2.setAttribute("value", "option 2");
-            
-        autoInput.appendChild(autoInputOption2);
-
-            const autoInputOption3 = document.createElement("option");
-            autoInputOption3.setAttribute("value", "option 3");
-            
-        autoInput.appendChild(autoInputOption3);
+        makeOPtion(k,autoInput)
 
         input.appendChild(autoInput);
 
@@ -180,26 +196,20 @@ export const autoMaker = () => {
           let list = document.createElement("ol");
           list.setAttribute("class", "optionList");    
 
-            for(let i=1;i<4;i++){
+            for(let i=1;i<=k;i++){
   
               let li = document.createElement("li");
                   li.setAttribute("class", "optionCnt");
               
-                    let c1 = document.createElement("input");
-                    c1.setAttribute("id", "checkbox");
-                    c1.setAttribute("type", "checkbox");
-              
-                  li.appendChild(c1);
-              
                     let c2 = document.createElement("input");
                     c2.setAttribute("type", "text");
-                    c2.value = `Option ${i}` 
+                    c2.value = `Option` 
               
                   li.appendChild(c2);
               
                     let c3 = document.createElement("input");
                     c3.setAttribute("type", "text");
-                    c3.value = `option-${i}` 
+                    c3.value = `option-` 
                       
                   li.appendChild(c3);
                       
@@ -224,6 +234,8 @@ export const autoMaker = () => {
             addOption.addEventListener('click',()=>{
                 let a = optionMaker()
                 list.appendChild(a)
+                k++
+                makeOPtion(k,autoInput)
             })
 
         editChoice.appendChild(addOption);

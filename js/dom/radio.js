@@ -1,7 +1,45 @@
-import { optionMaker } from "./options.js";
+import { optionMaker } from "./Radoptions.js";
+
+let i=1
+
+
+const makeRadiogrp = (k,a)=>{
+
+  for(;i<=k;i++){
+
+
+    let span = document.createElement("label");
+    span.setAttribute("for", "radio");
+    span.textContent = `option ${i}`
+    span.setAttribute( 'id',`id-${i}`);
+ 
+    let input = document.createElement("input");
+    input.setAttribute( 'class',`id-${i}`);
+    input.setAttribute("id", `radio-${i}`);
+    input.setAttribute("type", "radio");
+    input.setAttribute("value", `option ${i}`);
+    input.setAttribute("name", "radio");
+
+
+    input.addEventListener('click', ()=>{
+      let list = document.querySelector(`.optionList`)
+
+      let sad = list.querySelector(`#ids-${i-1}`)
+    })
+
+    a.appendChild(input);
+
+    a.appendChild(span)
+  }
+
+}
+
 
 export const radioMaker = () => {
     let labelText = "Radio Group";
+    let k=1
+    if(i>k){i=1}
+
 
     let div = document.createElement("div");
     div.setAttribute("class", "radioMaker");
@@ -24,50 +62,7 @@ export const radioMaker = () => {
         const radioGrp = document.createElement("div");
         radioGrp.setAttribute("class", "radioGrp");
 
-            const radioOption1 = document.createElement("label");
-            radioOption1.setAttribute("for", "radio1");
-            radioOption1.textContent = "option 1";
-
-                const radioInputOption1 = document.createElement("input");
-                radioInputOption1.setAttribute("type", "radio");
-                radioInputOption1.setAttribute("id", "radio1");
-                radioInputOption1.setAttribute("value", "option 1");
-                radioInputOption1.setAttribute("name", "radio");
-                radioInputOption1.textContent = "option 1";
-                
-            radioOption1.appendChild(radioInputOption1);
-            
-        radioGrp.appendChild(radioOption1);
-
-            const radioOption2 = document.createElement("label");
-            radioOption2.setAttribute("for", "radio2");
-            radioOption2.textContent = "option 2";
-
-                const radioInputOption2 = document.createElement("input");
-                radioInputOption2.setAttribute("type", "radio");
-                radioInputOption2.setAttribute("id", "radio2");
-                radioInputOption2.setAttribute("value", "option 2");
-                radioInputOption2.setAttribute("name", "radio");
-                radioInputOption2.textContent = "option 2";
-                
-            radioOption2.appendChild(radioInputOption2);
-            
-        radioGrp.appendChild(radioOption2);
-
-            const radioOption3 = document.createElement("label");
-            radioOption3.setAttribute("for", "radio3");
-            radioOption3.textContent = "option 3";
-
-                const radioInputOption3 = document.createElement("input");
-                radioInputOption3.setAttribute("type", "radio");
-                radioInputOption3.setAttribute("id", "radio3");
-                radioInputOption3.setAttribute("value", "option 3");
-                radioInputOption3.setAttribute("name", "radio");
-                radioInputOption3.textContent = "option 3";
-                
-            radioOption3.appendChild(radioInputOption3);
-            
-        radioGrp.appendChild(radioOption3);
+        makeRadiogrp(k,radioGrp)
 
       label.appendChild(radioGrp);
 
@@ -203,43 +198,14 @@ export const radioMaker = () => {
         let editChoice = document.createElement("div");
         editChoice.setAttribute("class", "optionWrap");
 
-        for(let i=0;i<4;i++){
                 let list = document.createElement("ol");
                 list.setAttribute("class", "optionList");    
                 
-                    let li = document.createElement("li");
-                    li.setAttribute("class", "optionCnt");
-                
-                        let c1 = document.createElement("input");
-                        c1.setAttribute("id", "checkbox");
-                        c1.setAttribute("type", "checkbox");
-                
-                    li.appendChild(c1);
-                
-                        let c2 = document.createElement("input");
-                        c2.setAttribute("type", "text");
-                        c2.value = `Option ${i}` 
-                
-                    li.appendChild(c2);
-                
-                        let c3 = document.createElement("input");
-                        c3.setAttribute("type", "text");
-                        c3.value = `option-${i}` 
-                
-                
-                    li.appendChild(c3);
-                        
-                        let c4 = document.createElement("button");
-                        c4.setAttribute("type", "button");
-                        c4.textContent = 'X'
-                
-                    li.appendChild(c4);
-                
-                list.appendChild(li)
-                
+                let a = optionMaker(k,radioGrp)
+                list.appendChild(a)
             
             editChoice.appendChild(list);
-        }
+        
 
             let addOption = document.createElement("button");
             addOption.setAttribute("class", "addOption");
@@ -247,8 +213,11 @@ export const radioMaker = () => {
 
 
             addOption.addEventListener('click',()=>{
-                let a = optionMaker()
-                list.appendChild(a)
+              k++
+              makeRadiogrp(k,radioGrp)
+
+              let a = optionMaker(k,radioGrp)
+              list.appendChild(a)
             })
 
         editChoice.appendChild(addOption);
