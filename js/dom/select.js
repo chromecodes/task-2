@@ -11,7 +11,11 @@ export const selectMaker = () => {
     topWrap.setAttribute("class", "topWrap");
 
       let label = document.createElement("label");
-      label.setAttribute("for", "checkbox");
+      label.setAttribute("type", "select");
+      label.setAttribute("label", "Select");
+      label.setAttribute("name", "select-123");
+      label.setAttribute("class", "select");
+      label.setAttribute("access", "false");
       label.textContent = labelText;
 
         const editInput = document.createElement("select");
@@ -82,6 +86,10 @@ export const selectMaker = () => {
           let editReq = document.createElement("input");
           editReq.setAttribute("type", "checkbox");
 
+          editReq.addEventListener('click',()=>{
+            label.setAttribute('required',`${editReq.checked}`)
+        })
+
         s1.appendChild(editReq);
       editOption.appendChild(s1);
 
@@ -90,6 +98,11 @@ export const selectMaker = () => {
           let editlabel = document.createElement("input");
           editlabel.setAttribute("type", "text");
           editlabel.value = labelText
+
+          editlabel.addEventListener('input',(e)=>{
+            label.textContent = e.target.value
+            label.setAttribute("label", `${e.target.value}`);
+          })
         s2.appendChild(editlabel);
 
       editOption.appendChild(s2);
@@ -98,6 +111,10 @@ export const selectMaker = () => {
         s3.textContent = "Help Text";
           let editText = document.createElement("input");
           editText.setAttribute("type", "text");
+
+          editText.addEventListener('input',(e)=>{
+            label.setAttribute("tooltip", `${e.target.value}`);
+          })
         s3.appendChild(editText);
 
       editOption.appendChild(s3);
@@ -106,6 +123,10 @@ export const selectMaker = () => {
             s4.textContent = "Placeholder";
                 let editPlace = document.createElement("input");
                 editPlace.setAttribute("type", "text");
+
+                editPlace.addEventListener('input',(e)=>{
+                  label.setAttribute("placeholder", `${e.target.value}`);
+                })
             s4.appendChild(editPlace);
 
         editOption.appendChild(s4);
@@ -114,6 +135,10 @@ export const selectMaker = () => {
         s5.textContent = "Class";
           let editClass = document.createElement("input");
           editClass.setAttribute("type", "text");
+          editClass.value='select'
+          editClass.addEventListener('input', (e)=>{
+            label.setAttribute('class',`${e.target.value}`)
+          })
         s5.appendChild(editClass);
 
       editOption.appendChild(s5);
@@ -122,6 +147,10 @@ export const selectMaker = () => {
       s6.textContent = "Name";
         let editName = document.createElement("input");
         editName.setAttribute("type", "text");
+        editName.value='select-123'
+        editName.addEventListener('input', (e)=>{
+          label.setAttribute('name',`${e.target.value}`)
+        })
       s6.appendChild(editName);
 
     editOption.appendChild(s6);
@@ -130,6 +159,10 @@ export const selectMaker = () => {
       s7.textContent = "Multi selection";
         let editOther = document.createElement("input");
         editOther.setAttribute("type", "checkbox");
+
+        editOther.addEventListener('click',()=>{
+          label.setAttribute('multi',`${editOther.checked}`)
+        })
         
       s7.appendChild(editOther);
 
@@ -193,6 +226,17 @@ export const selectMaker = () => {
     s8.appendChild(editChoice);
 
   editOption.appendChild(s8);
+
+    let s10 = document.createElement("div");
+    s10.textContent = "Access";
+      let editAccess = document.createElement("input");
+      editAccess.setAttribute("type", "checkbox");
+
+      editAccess.addEventListener('click',()=>{
+      label.setAttribute('access',`${editAccess.checked}`)
+    })
+    s10.appendChild(editAccess);
+  editOption.appendChild(s10);
 
 
     div.appendChild(editOption);

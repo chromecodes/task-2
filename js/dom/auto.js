@@ -163,6 +163,7 @@ export const autoMaker = () => {
       s6.textContent = "Name";
         let editName = document.createElement("input");
         editName.setAttribute("type", "text");
+        editName.value = 'auto-123'
 
         editName.addEventListener('input', (e)=>{
           input.setAttribute('name',`${e.target.value}`)
@@ -238,7 +239,7 @@ export const autoMaker = () => {
 
           editAccess.addEventListener('click',()=>{
             console.log(editAccess.checked)
-            label.setAttribute('access',`${editAccess.checked}`)
+            input.setAttribute('access',`${editAccess.checked}`)
 
           })
         s9.appendChild(editAccess);

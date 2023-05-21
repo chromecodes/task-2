@@ -8,16 +8,26 @@ export const textMaker = () => {
     let topWrap = document.createElement("div");
     topWrap.setAttribute("class", "topWrap");
 
+
+      let inWrap = document.createElement("div");
+      inWrap.setAttribute("class", "inWrap");
+
         let label = document.createElement("label");
         label.textContent = labelText;
 
+      inWrap.appendChild(label);
+
             let input = document.createElement("input");
-            input.setAttribute("id", "text");
             input.setAttribute("type", "text");
+            input.setAttribute("required", "false");
+            input.setAttribute("label", "Text Field");
+            input.setAttribute("class", "text");
+            input.setAttribute("name", "text-123");
+            input.setAttribute("access", "false");
 
-        label.appendChild(input);
+      inWrap.appendChild(input);
 
-    topWrap.appendChild(label);
+    topWrap.appendChild(inWrap);
 
       let editDiv = document.createElement("div");
       editDiv.setAttribute("class", "editDiv");
@@ -62,6 +72,10 @@ export const textMaker = () => {
                 let editReq = document.createElement("input");
                 editReq.setAttribute("type", "checkbox");
 
+                editReq.addEventListener('click',()=>{
+                  input.setAttribute('required',`${editReq.checked}`)
+              })
+
             s1.appendChild(editReq);
 
         editOption.appendChild(s1);
@@ -71,6 +85,11 @@ export const textMaker = () => {
                 let editlabel = document.createElement("input");
                 editlabel.setAttribute("type", "text");
                 editlabel.value = labelText
+
+                editlabel.addEventListener('input',(e)=>{
+                  label.textContent = e.target.value
+                  input.setAttribute("label", `${e.target.value}`);
+                })
             s2.appendChild(editlabel);
 
         editOption.appendChild(s2);
@@ -79,6 +98,10 @@ export const textMaker = () => {
             s3.textContent = "Help Text";
                 let editText = document.createElement("input");
                 editText.setAttribute("type", "text");
+
+                editText.addEventListener('input',(e)=>{
+                  label.setAttribute("tooltip", `${e.target.value}`);
+                })
             s3.appendChild(editText);
 
         editOption.appendChild(s3);
@@ -87,6 +110,10 @@ export const textMaker = () => {
             s4.textContent = "Placeholder";
                 let editPlace = document.createElement("input");
                 editPlace.setAttribute("type", "text");
+
+                editPlace.addEventListener('input',(e)=>{
+                  input.setAttribute("placeholder", `${e.target.value}`);
+                })
             s4.appendChild(editPlace);
 
         editOption.appendChild(s4);
@@ -95,6 +122,12 @@ export const textMaker = () => {
             s5.textContent = "Class";
                 let editClass = document.createElement("input");
                 editClass.setAttribute("type", "text");
+                editClass.value = "text"
+
+
+                editClass.addEventListener('input', (e)=>{
+                  input.setAttribute('class',`${e.target.value}`)
+                })
             s5.appendChild(editClass);
 
         editOption.appendChild(s5);
@@ -103,6 +136,11 @@ export const textMaker = () => {
             s6.textContent = "Name";
                 let editName = document.createElement("input");
                 editName.setAttribute("type", "text");
+                editName.value = "text-123"
+
+                editName.addEventListener('input', (e)=>{
+                  input.setAttribute('name',`${e.target.value}`)
+                })
             s6.appendChild(editName);
 
         editOption.appendChild(s6);
@@ -111,6 +149,10 @@ export const textMaker = () => {
             s7.textContent = "Value";
                 let editvalue = document.createElement("input");
                 editvalue.setAttribute("type", "text");
+
+                editvalue.addEventListener('input', (e)=>{
+                  input.setAttribute('value',`${e.target.value}`)
+                })
             s7.appendChild(editvalue);
 
         editOption.appendChild(s7);
@@ -156,6 +198,10 @@ export const textMaker = () => {
 
             editType.appendChild(editTypeOption5);
 
+            editType.addEventListener('change',(e)=>{
+              input.setAttribute('type',`${e.target.value}`)
+            })
+
         s8.appendChild(editType);
 
       editOption.appendChild(s8);
@@ -164,10 +210,24 @@ export const textMaker = () => {
         s9.textContent = "Max Length";
           let editLength = document.createElement("input");
           editLength.setAttribute("type", "number");
+
+          editLength.addEventListener('input',(e)=>{
+            input.setAttribute('maxlength',`${e.target.value}`)
+          })
         s9.appendChild(editLength);
 
       editOption.appendChild(s9);
 
+      let s10 = document.createElement("div");
+      s10.textContent = "Access";
+        let editAccess = document.createElement("input");
+        editAccess.setAttribute("type", "checkbox");
+
+        editAccess.addEventListener('click',()=>{
+        input.setAttribute('access',`${editAccess.checked}`)
+      })
+      s10.appendChild(editAccess);
+  editOption.appendChild(s10);
 
     div.appendChild(editOption);
 

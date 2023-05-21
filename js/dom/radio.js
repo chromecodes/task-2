@@ -11,7 +11,14 @@ export const radioMaker = () => {
     topWrap.setAttribute("class", "topWrap");
 
       let label = document.createElement("label");
-      label.setAttribute("for", "radioMaker");
+      label.setAttribute("type", "radio");
+      label.setAttribute("label", "Radio Group");
+      label.setAttribute("name", "radio-123");
+      label.setAttribute("class", "radio");
+      label.setAttribute("access", "false");
+      label.setAttribute("inline", "false");
+      label.setAttribute("other", "false");
+
       label.textContent = labelText;
 
         const radioGrp = document.createElement("div");
@@ -108,6 +115,9 @@ export const radioMaker = () => {
         s1.textContent = "Required";
           let editReq = document.createElement("input");
           editReq.setAttribute("type", "checkbox");
+          editReq.addEventListener('click',()=>{
+            label.setAttribute('required',`${editReq.checked}`)
+        })
 
         s1.appendChild(editReq);
       editOption.appendChild(s1);
@@ -117,6 +127,11 @@ export const radioMaker = () => {
           let editlabel = document.createElement("input");
           editlabel.setAttribute("type", "text");
           editlabel.value = labelText
+
+          editlabel.addEventListener('input',(e)=>{
+            label.textContent = e.target.value
+            label.setAttribute("label", `${e.target.value}`);
+          })
         s2.appendChild(editlabel);
 
       editOption.appendChild(s2);
@@ -125,6 +140,10 @@ export const radioMaker = () => {
         s3.textContent = "Help Text";
           let editText = document.createElement("input");
           editText.setAttribute("type", "text");
+
+          editText.addEventListener('input',(e)=>{
+            label.setAttribute("tooltip", `${e.target.value}`);
+          })
         s3.appendChild(editText);
 
       editOption.appendChild(s3);
@@ -133,6 +152,9 @@ export const radioMaker = () => {
       s4.textContent = "Inline";
         let editvalue = document.createElement("input");
         editvalue.setAttribute("type", "checkbox");
+        editvalue.addEventListener('click',()=>{
+          label.setAttribute('Inline',`${editvalue.checked}`)
+        })
         
       s4.appendChild(editvalue);
 
@@ -142,6 +164,11 @@ export const radioMaker = () => {
         s5.textContent = "Class";
           let editClass = document.createElement("input");
           editClass.setAttribute("type", "text");
+          editClass.value='radio'
+
+          editClass.addEventListener('input', (e)=>{
+            label.setAttribute('class',`${e.target.value}`)
+          })
         s5.appendChild(editClass);
 
       editOption.appendChild(s5);
@@ -150,6 +177,10 @@ export const radioMaker = () => {
       s6.textContent = "Name";
         let editName = document.createElement("input");
         editName.setAttribute("type", "text");
+        editName.value='radio-123'
+        editName.addEventListener('input', (e)=>{
+          label.setAttribute('name',`${e.target.value}`)
+        })
       s6.appendChild(editName);
 
     editOption.appendChild(s6);
@@ -158,6 +189,10 @@ export const radioMaker = () => {
       s7.textContent = "Enable 'Other'";
         let editOther = document.createElement("input");
         editOther.setAttribute("type", "checkbox");
+
+        editOther.addEventListener('click',()=>{
+          label.setAttribute('Other',`${editOther.checked}`)
+        })
         
       s7.appendChild(editOther);
 
@@ -221,6 +256,18 @@ export const radioMaker = () => {
     s8.appendChild(editChoice);
 
   editOption.appendChild(s8);
+
+  let s9 = document.createElement("div");
+  s9.textContent = "Access";
+    let editAccess = document.createElement("input");
+    editAccess.setAttribute("type", "checkbox");
+
+    editAccess.addEventListener('click',()=>{
+      label.setAttribute('access',`${editAccess.checked}`)
+
+    })
+  s9.appendChild(editAccess);
+editOption.appendChild(s9);
 
 
     div.appendChild(editOption);

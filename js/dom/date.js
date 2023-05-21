@@ -23,6 +23,8 @@ export const datePick = () => {
           input.setAttribute("label", "Date Field");
           input.setAttribute("class", "date");
           input.setAttribute("name", "date-123");
+          input.setAttribute("access", "false");
+
 
           input.addEventListener('input', (e)=>{
             input.setAttribute('value',`${e.target.value}`)
@@ -78,7 +80,6 @@ export const datePick = () => {
 
           editReq.addEventListener('click',()=>{
             input.setAttribute('required',`${editReq.checked}`)
-  
         })
 
         s1.appendChild(editReq);
@@ -116,7 +117,7 @@ export const datePick = () => {
         s4.textContent = "Class";
           let editClass = document.createElement("input");
           editClass.setAttribute("type", "text");
-
+          editClass.value = 'date'
           editClass.addEventListener('input', (e)=>{
             input.setAttribute('class',`${e.target.value}`)
           })
@@ -140,6 +141,7 @@ export const datePick = () => {
       s6.textContent = "Name";
         let editName = document.createElement("input");
         editName.setAttribute("type", "text");
+        editName.value = 'date-123'
 
         editName.addEventListener('input', (e)=>{
           input.setAttribute('name',`${e.target.value}`)
@@ -147,6 +149,17 @@ export const datePick = () => {
       s6.appendChild(editName);
 
     editOption.appendChild(s6);
+
+    let s9 = document.createElement("div");
+    s9.textContent = "Access";
+      let editAccess = document.createElement("input");
+      editAccess.setAttribute("type", "checkbox");
+
+      editAccess.addEventListener('click',()=>{
+        input.setAttribute('access',`${editAccess.checked}`)
+      })
+    s9.appendChild(editAccess);
+  editOption.appendChild(s9);
 
     div.appendChild(editOption);
 

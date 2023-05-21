@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Open+Sans&family=Quicksand&family=Saira:ital,wght@1,300;1,400&display=swap);
 
-@import "date.css";
-
+@import "dom.css";
 
 body {
   font-family: "Nunito", sans-serif;
@@ -19,13 +18,19 @@ ul{
   margin: 0;
   padding: 0;
 }
+button {
+  cursor: pointer;
+}
 .root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 .header {
-  background-color: gainsboro;
+  background-color: #474b4f;
+  color: #86c232;
+  font-weight: 600;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,21 +39,17 @@ ul{
 }
 .main {
   flex-grow: 1;
-  background-color: black;
+  background-color: #222629;
   padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
-.left {
-  background-color: rgba(250, 235, 215, 0.16);
-}
 .mid {
   min-height: 67vh;
   width: 50vw;
-  background-color: rgba(255, 255, 255, 0.172);
-  border: 2px dashed rgba(255, 255, 255, 0.493);
+  background-color: #6b6e7036;
 }
 
 .mid > div:first-child{
@@ -67,8 +68,6 @@ ul{
   border: 1px solid #c5c5c5;
   border-bottom: 0;
   cursor: move;
-
-
 }
 .controls > li:first-child {
   border-radius: 5px 5px 0px 0px;
@@ -85,16 +84,60 @@ ul{
   padding: 6px 12px;
 }
 li.draggable {
+  color: #fff;
   padding: 10px;
-  background-color: aliceblue;
+  background-color: #474b4f;
   margin-bottom: 2px;
 }
+.clear{
+  background-color: rgb(171, 86, 86);
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+.json{
+  background-color: rgb(86, 99, 171);
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+.save{
+  background-color: rgb(89, 171, 86);
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .footer {
-  background-color: gray;
-  color: aliceblue;
+  background-color: #474b4f;
+  color: #86c232;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
   font-size: 18px;
+}
+.modalWrapper{
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #86c23249;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  color: #86c232;
+  font-size: 18px;
+  font-weight: 600;
+  width: 50vw;
+  height: 50vh;
+  padding: 3rem;
+  border: 1px solid #86c232;
+  border-radius: 20px;
+  background-color: #222629;
+  overflow-y: scroll;
 }

@@ -9,8 +9,11 @@ export const paraMaker = () => {
     topWrap.setAttribute("class", "topWrap");
 
       let label = document.createElement("label");
-      label.setAttribute("for", "para");
       label.textContent = labelText;
+      label.setAttribute("type", "p");
+      label.setAttribute("label", "Paragraph");
+      label.setAttribute("class", "para");
+      label.setAttribute("access", "false");
 
       topWrap.appendChild(label);
 
@@ -101,18 +104,40 @@ export const paraMaker = () => {
             
 
             editType.appendChild(editTypeOption5);
+
+            editType.addEventListener('change',(e)=>{
+              label.setAttribute('type',`${e.target.value}`)
+            })
             
         s2.appendChild(editType);
 
     editOption.appendChild(s2);
 
-    let s3 = document.createElement("div");
-    s3.textContent = "Class";
-        let editClass = document.createElement("input");
-        editClass.setAttribute("type", "text");
-    s3.appendChild(editClass);
+        let s3 = document.createElement("div");
+        s3.textContent = "Class";
+            let editClass = document.createElement("input");
+            editClass.setAttribute("type", "text");
+            editClass.value ='para'
 
-editOption.appendChild(s3);
+            editClass.addEventListener('input', (e)=>{
+              label.setAttribute('class',`${e.target.value}`)
+            })
+
+        s3.appendChild(editClass);
+
+    editOption.appendChild(s3);
+      let s6 = document.createElement("div");
+      s6.textContent = "Access";
+        let editAccess = document.createElement("input");
+        editAccess.setAttribute("type", "checkbox");
+
+        editAccess.addEventListener('click',()=>{
+          label.setAttribute('access',`${editAccess.checked}`)
+
+        })
+
+      s6.appendChild(editAccess);
+    editOption.appendChild(s6);
 
 
     div.appendChild(editOption);

@@ -58,7 +58,7 @@ export const hiddenMaker = () => {
             s1.textContent = "Name";
                 let editName = document.createElement("input");
                 editName.setAttribute("type", "text");
-
+                editName.value='hidden-123'
                 editName.addEventListener('input', (e)=>{
                   label.setAttribute('name',`${e.target.value}`)
                 })
@@ -92,6 +92,9 @@ export const hiddenMaker = () => {
 
         s6.appendChild(editAccess);
       editOption.appendChild(s6);
+
+
+    div.appendChild(editOption);
 
     return div
   };

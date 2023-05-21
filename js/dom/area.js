@@ -8,16 +8,26 @@ export const areaMaker = () => {
     let topWrap = document.createElement("div");
     topWrap.setAttribute("class", "topWrap");
 
+
+      let inWrap = document.createElement("div");
+      inWrap.setAttribute("class", "inWrap");
+
         let label = document.createElement("label");
         label.textContent = labelText;
 
-            let input = document.createElement("input");
-            input.setAttribute("id", "textarea");
-            input.setAttribute("type", "textarea");
+      inWrap.appendChild(label);
 
-        label.appendChild(input);
+        let input = document.createElement("textarea");
+        input.setAttribute("type", "textarea");
+        input.setAttribute("required", "false");
+        input.setAttribute("label", "Text Area");
+        input.setAttribute("class", "text");
+        input.setAttribute("name", "text-123");
+        input.setAttribute("access", "false");
 
-    topWrap.appendChild(label);
+      inWrap.appendChild(input);
+
+    topWrap.appendChild(inWrap);
 
       let editDiv = document.createElement("div");
       editDiv.setAttribute("class", "editDiv");
@@ -62,6 +72,10 @@ export const areaMaker = () => {
                 let editReq = document.createElement("input");
                 editReq.setAttribute("type", "checkbox");
 
+                editReq.addEventListener('click',()=>{
+                  input.setAttribute('required',`${editReq.checked}`)
+              })
+
             s1.appendChild(editReq);
 
         editOption.appendChild(s1);
@@ -71,6 +85,11 @@ export const areaMaker = () => {
                 let editlabel = document.createElement("input");
                 editlabel.setAttribute("type", "text");
                 editlabel.value = labelText
+
+                editlabel.addEventListener('input',(e)=>{
+                  label.textContent = e.target.value
+                  input.setAttribute("label", `${e.target.value}`);
+                })
             s2.appendChild(editlabel);
 
         editOption.appendChild(s2);
@@ -81,13 +100,22 @@ export const areaMaker = () => {
                 editText.setAttribute("type", "text");
             s3.appendChild(editText);
 
+            editText.addEventListener('input',(e)=>{
+              label.setAttribute("tooltip", `${e.target.value}`);
+            })
+
         editOption.appendChild(s3);
 
             let s4 = document.createElement("div");
             s4.textContent = "Placeholder";
                 let editPlace = document.createElement("input");
                 editPlace.setAttribute("type", "text");
+
+                editPlace.addEventListener('input',(e)=>{
+                  input.setAttribute("placeholder", `${e.target.value}`);
+                })
             s4.appendChild(editPlace);
+
 
         editOption.appendChild(s4);
 
@@ -95,6 +123,10 @@ export const areaMaker = () => {
             s5.textContent = "Class";
                 let editClass = document.createElement("input");
                 editClass.setAttribute("type", "text");
+                editClass.value='area'
+                editClass.addEventListener('input', (e)=>{
+                  input.setAttribute('class',`${e.target.value}`)
+                })
             s5.appendChild(editClass);
 
         editOption.appendChild(s5);
@@ -103,6 +135,10 @@ export const areaMaker = () => {
             s6.textContent = "Name";
                 let editName = document.createElement("input");
                 editName.setAttribute("type", "text");
+                editName.value="area-123"
+                editName.addEventListener('input', (e)=>{
+                  input.setAttribute('name',`${e.target.value}`)
+                })
             s6.appendChild(editName);
 
         editOption.appendChild(s6);
@@ -111,6 +147,10 @@ export const areaMaker = () => {
             s7.textContent = "Value";
                 let editvalue = document.createElement("input");
                 editvalue.setAttribute("type", "text");
+
+                editvalue.addEventListener('input', (e)=>{
+                  input.setAttribute('value',`${e.target.value}`)
+                })
             s7.appendChild(editvalue);
 
         editOption.appendChild(s7);
@@ -139,8 +179,11 @@ export const areaMaker = () => {
             editTypeOption3.setAttribute("value", "Quill");
             editTypeOption3.textContent = "Quill";
             
-
             editType.appendChild(editTypeOption3);
+
+            editType.addEventListener('change',(e)=>{
+              input.setAttribute('type',`${e.target.value}`)
+            })
 
         s8.appendChild(editType);
 
@@ -150,6 +193,10 @@ export const areaMaker = () => {
         s9.textContent = "Max Length";
           let editLength = document.createElement("input");
           editLength.setAttribute("type", "number");
+
+          editLength.addEventListener('input',(e)=>{
+            input.setAttribute('maxlength',`${e.target.value}`)
+          })
         s9.appendChild(editLength);
 
       editOption.appendChild(s9);
@@ -158,9 +205,24 @@ export const areaMaker = () => {
         s10.textContent = "Rows";
             let editRows = document.createElement("input");
             editRows.setAttribute("type", "number");
+
+            editRows.addEventListener('input',(e)=>{
+              input.setAttribute('rows',`${e.target.value}`)
+            })
         s10.appendChild(editRows);
 
         editOption.appendChild(s10);
+
+        let s11 = document.createElement("div");
+        s11.textContent = "Access";
+          let editAccess = document.createElement("input");
+          editAccess.setAttribute("type", "checkbox");
+  
+          editAccess.addEventListener('click',()=>{
+          input.setAttribute('access',`${editAccess.checked}`)
+        })
+        s11.appendChild(editAccess);
+    editOption.appendChild(s11);
 
 
     div.appendChild(editOption);

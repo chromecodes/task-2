@@ -12,6 +12,7 @@ import { radioMaker } from "./dom/radio.js";
 import { selectMaker } from "./dom/select.js";
 import { textMaker } from "./dom/text.js";
 import { areaMaker } from "./dom/area.js";
+import { createModel } from "./listener.js";
 
 
 let d1 = document.querySelector('#autoMaker')
@@ -42,18 +43,21 @@ clear.addEventListener('click',()=>{
 })
 
 json.addEventListener('click',()=>{
-    let top = document.querySelector('.topWrap')
     let arr1 = mid.querySelectorAll("[access]")
     console.log(arr1);
-
-    let a = arr1.outerHTML;
-    console.log(a)
-
-    let data = {"html" : a}
-    console.log(data)
-
-    let j = JSON.stringify(data)
-    console.log(j)
+    let Json = [] 
+    arr1.forEach((arr)=>{
+        console.log(arr.attributes);
+        let t2 = arr.attributes
+        let obj = {}
+        for(let i=0 ;i<t2.length;i++) {
+            obj[t2[i].name] = t2[i].value
+        }
+        Json.push(obj)
+    })
+    console.log(Json);
+    let body = document.querySelector('body')
+    body.appendChild(createModel(Json))
 })
 
 save.addEventListener('click',()=>{})

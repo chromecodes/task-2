@@ -115,6 +115,8 @@ export const fileUp = () => {
             s4.textContent = "Class";
               let editClass = document.createElement("input");
               editClass.setAttribute("type", "text");
+              editClass.value = 'file'
+
 
               editClass.addEventListener('input', (e)=>{
                 input.setAttribute('class',`${e.target.value}`)
@@ -149,17 +151,29 @@ export const fileUp = () => {
         editOption.appendChild(s5);
 
             let s6 = document.createElement("div");
-            s6.textContent = "Required";
+            s6.textContent = "Multiple";
                 let multiFile = document.createElement("input");
                 multiFile.setAttribute("type", "checkbox");
 
                 multiFile.addEventListener('click',()=>{
-                    input.setAttribute('multiple',`${editReq.checked}`)
+                    input.setAttribute('multiple',`${multiFile.checked}`)
           
                 })
 
             s6.appendChild(multiFile);
         editOption.appendChild(s6);
+
+            let s10 = document.createElement("div");
+                s10.textContent = "Access";
+            let editAccess = document.createElement("input");
+                editAccess.setAttribute("type", "checkbox");
+
+                editAccess.addEventListener('click',()=>{
+                    input.setAttribute('access',`${editAccess.checked}`)
+                })
+                s10.appendChild(editAccess);
+                
+        editOption.appendChild(s10);
 
     div.appendChild(editOption);
 

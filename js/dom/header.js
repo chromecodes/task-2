@@ -115,6 +115,7 @@ export const headerMaker = () => {
             
         editType.addEventListener('change',(e)=>{
           label.setAttribute('type',`${e.target.value}`)
+      
         })
 
             editType.appendChild(editTypeOption6);
