@@ -14,17 +14,10 @@ export const optionMaker = (i,b) => {
         c2.value = `option ${i}`
 
         c2.addEventListener('input',(e)=>{
-            sad.textContent = e.target.value
+            sad.setAttribute('value', `${e.target.value}`)  
         })
 
     li.appendChild(c2);
-
-
-        let c3 = document.createElement("input");
-        c3.setAttribute("type", "text");
-        c3.value = `option ${i}`
-
-    li.appendChild(c3);
 
 
         let c4 = document.createElement("button");

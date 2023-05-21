@@ -47,7 +47,7 @@ json.addEventListener('click',()=>{
     console.log(arr1);
     let Json = [] 
     arr1.forEach((arr)=>{
-        let t1 = arr.children
+      /*  let t1 = arr.children
         let val = []
         for(let i=0 ;i<t1.length;i++) {
             let t = t1[0][i]
@@ -57,13 +57,13 @@ json.addEventListener('click',()=>{
             'selected': t.selected,
            }
            val.push(ab)
-        }
+        }*/
         let t2 = arr.attributes
         let obj = {}
         for(let i=0 ;i<t2.length;i++) {
             obj[t2[i].name] = t2[i].value
         }
-        obj['value'] = val
+        /*obj['value'] = val*/
         Json.push(obj)
     })
     console.log(Json);
